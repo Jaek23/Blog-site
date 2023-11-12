@@ -22,15 +22,15 @@ Comment.init(
                 model: 'user',
                 key:"id",
             },
-        },
-        post_id: {
+          },
+          post_id: {
             type:DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: 'post',
                 key:"id",
             },
-        }
+          }
     },
     {
         sequelize,
@@ -41,4 +41,4 @@ Comment.init(
       }
 );
 
-moduke.exports = Comment;
+module.exports = Comment;
