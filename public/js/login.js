@@ -1,0 +1,1 @@
+//Create event listners for both login/sign up button from login/handlebars that will take the user to the dashboard page 
