@@ -48,4 +48,39 @@ router.get("/", async (req, res) => {
     }
   });
 
+  //Route to get single post 
+  router.get("/post/:id", withAuth, async (req, res) => {
+    try {
+          // Find post by ID with associated username and comments with associated usernames
+      const postData = await Post.findByPk(req.params.id, {
+        include: [
+          { model: User, attributes: ["name"] },
+          {
+            model: Comment,
+            include: [{ model: User, attributes: ["name"] }],
+          },
+        ],
+      });
+      // Convert post data to plain JavaScript object
+      const post = postData.get({ plain: true });
+      // Render post template with post data and login status
+      res.render("post", {
+        ...post,
+        logged_in: req.session.logged_in,
+      });
+    } catch (err) {
+          // If there is an error, return 500 status code and error message
+      res.status(500).json(err);
+    }
+  });
+
+//route to go to newPostForm handlebar 
+  router.get("/newpost", (req, res) => {
+    if (req.session.logged_in) {
+      res.render("newPostForm");
+      return;
+    }
+    //res.redirect("/logout");
+  });
+
   module.exports = router;
