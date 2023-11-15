@@ -75,12 +75,14 @@ router.get("/", async (req, res) => {
   });
 
 //route to go to newPostForm handlebar 
-  router.get("/newpost", (req, res) => {
-    if (req.session.logged_in) {
-      res.render("newPostForm");
-      return;
-    }
-    //res.redirect("/logout");
-  });
+router.get("/newpost", withAuth, (req, res) => {
+  if (req.session.logged_in) {
+    res.render("newPostForm", {
+      logged_in: req.session.logged_in,
+    });
+    return;
+  }
+  //res.redirect("/logout");
+});
 
   module.exports = router;
