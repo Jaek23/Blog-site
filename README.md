@@ -22,3 +22,4 @@ MIT License
 ![image](https://github.com/Jaek23/Blog-site/assets/141678374/cef92a54-6f62-41b9-b58b-b64c053d5b9f)
 
 ## Link to deployed Webpage 
+https://blog-site-jae-f460504fc389.herokuapp.com/
