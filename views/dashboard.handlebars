@@ -1,4 +1,41 @@
 <div>
      <button><a href="/newpost">New Post</a></button>
 </div>
+
+ <div class="list-group">
+{{#each posts as |post|}}
+  <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{title}}</h5>
+      <small>{{user.name}}</small>
+    </div>
+    <div>
+      <a href="/editpost/{{id}}">Edit Post</a>
+      <button class="delete-post" data-post-id="{{id}}">Delete</button>
+    </div>
+  </a>
+  {{/each}}
+</div>
+<script src="/js/deletepost.js"></script>
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ {{!-- <div class="post-container post mb-3">
+ {{#each posts as |post|}}
+      <h2><a href="#" class="text-decoration-none text-reset">{{title}}</a></h2>
+      <p>Created by: {{user.name}}</p>
+      <a href="#" class="btn btn-warning">Edit Post</a>
+      <button class="btn btn-danger delete-post">Delete</button>
+ {{/each}}     
+</div> --}}

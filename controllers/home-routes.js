@@ -31,17 +31,17 @@ router.get("/", async (req, res) => {
 
    router.get('/dashboard', withAuth, async (req, res) => {
     try {
-      // Find the logged in user based on the session ID
-      const userData = await User.findByPk(req.session.user_id, {
-        attributes: { exclude: ['password'] },
-        include: [{ model: Post }],
+      // Render post made by the user onto their dashboard page
+      const postData = await Post.findAll({
+        where:{user_id: req.session.user_id},
+        include:[{model:User, attribute:["name"]}],
       });
   
-      const user = userData.get({ plain: true });
+      const posts = postData.map((post) => post.get({plain:true}));
   
       res.render('dashboard', {
-        ...user,
-        logged_in: true
+        posts,
+        logged_in: req.session.logged_in
       });
     } catch (err) {
       res.status(500).json(err);
@@ -84,5 +84,26 @@ router.get("/newpost", withAuth, (req, res) => {
   }
   //res.redirect("/logout");
 });
+
+//route to go to the editpost handlebar 
+router.get("/editpost/:id", async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        { model: User, attributes: ["name"] },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+
+    res.render("editpost", {
+      ...post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
   module.exports = router;

@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Edit Post</h2>
+  <form class="updatePostForm">
+    <div class="mb-3">
+      <label for="update-title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="update-title"
+        value="{{title}}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="update-description" class="form-label">Description</label>
+      <textarea
+        class="form-control"
+        id="update-description"
+        rows="5"
+      >{{description}}</textarea>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Update Post</button>
+    </div>
+  </form>
+</div>
+<script src="/js/editpost.js"></script>
