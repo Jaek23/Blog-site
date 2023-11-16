@@ -1,3 +1,4 @@
+//Event Listner for adding comment 
 const commentFormHandler = async (event) => {
     event.preventDefault();
 

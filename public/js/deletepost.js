@@ -1,3 +1,4 @@
+//Event listener to delete post
 const deletePost = async (post_id) => {
   const response = await fetch(`/api/posts/${post_id}`, {
       method: "DELETE",
